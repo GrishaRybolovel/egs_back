@@ -17,3 +17,5 @@ python manage.py migrate
 
 deactivate
 
+sudo systemctl restart gunicorn
+
