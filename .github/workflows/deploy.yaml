@@ -24,4 +24,4 @@ jobs:
 
     - name: Run deploy script
       run: |
-        ssh -o StrictHostKeyChecking=no root@95.163.241.148 'cd /home/django/egs_back && chmod +x deploy.sh && sh deploy.sh'
+        ssh -o StrictHostKeyChecking=no root@95.163.241.148 'cd /home/django/egs_back/.scripts && chmod +x deploy.sh && sh deploy.sh'
