@@ -6,7 +6,7 @@ cd /home/django/egs_back
 echo "Deployment started"
 git pull origin master
 
-source /home/django/egs_back/env/bin/activate
+. /home/django/egs_back/env/bin/activate
 
 pip install -r requirements.txt
 
