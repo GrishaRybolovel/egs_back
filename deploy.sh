@@ -19,3 +19,5 @@ deactivate
 
 sudo systemctl restart gunicorn
 
+sudo systemctl restart egs_back
+
