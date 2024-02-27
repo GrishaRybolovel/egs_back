@@ -12,11 +12,14 @@ import os
 
 from task_app.models import Tasks
 from user_app.models import CustomUser
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class FileDownloadView(View):
     def get(self, request, file_path):
-        file_path = os.path.join('media/', file_path)  # Replace with the actual path to your files
+        file_path = os.path.join(BASE_DIR, 'media/media/', file_path)  # Replace with the actual path to your files
         response = FileResponse(open(file_path, 'rb'))
         return response
 
@@ -64,7 +67,7 @@ class MessageListCreateView(generics.ListCreateAPIView):
         # Convert 'doc' field to base64 in each message
         for message in serializer.data:
             if message['doc']:
-                doc_path = os.path.join('media', str(message['doc'].split('/')[4]))  # Assuming 'media' is your media root
+                doc_path = os.path.join(str(message['doc'].split('/')[4]))  # Assuming 'media' is your media root
                 try:
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')

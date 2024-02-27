@@ -7,13 +7,16 @@ from .models import Documents
 from .serializers import DocumentsSerializer
 from django.http import FileResponse
 from django.views import View
+from pathlib import Path
 import json
 import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class FileDownloadView(View):
     def get(self, request, file_path):
-        file_path = os.path.join('media/', file_path)  # Replace with the actual path to your files
+        file_path = os.path.join(BASE_DIR, 'media/media/', file_path)  # Replace with the actual path to your files
         response = FileResponse(open(file_path, 'rb'))
         return response
 
