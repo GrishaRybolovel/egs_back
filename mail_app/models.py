@@ -18,7 +18,7 @@ class Mails(models.Model):
     completion = models.DateField(verbose_name='Срок выполнения', null=True, blank=True)
     done = models.DateField(verbose_name='Дата выполнения', null=True, blank=True)
     type = models.CharField(max_length=256, verbose_name='Тип', blank=True, null=True)
-    doc = models.FileField(upload_to='uploads_mails/', verbose_name='Документ', null=True, blank=True)
+    doc = models.FileField(upload_to='media/', verbose_name='Документ', null=True, blank=True)
     projects_to_mails = models.ForeignKey(
         Projects,
         on_delete=models.deletion.CASCADE,

@@ -16,7 +16,7 @@ from user_app.models import CustomUser
 
 class FileDownloadView(View):
     def get(self, request, file_path):
-        file_path = os.path.join('messages_docs/', file_path)  # Replace with the actual path to your files
+        file_path = os.path.join('media/', file_path)  # Replace with the actual path to your files
         response = FileResponse(open(file_path, 'rb'))
         return response
 
@@ -64,7 +64,7 @@ class MessageListCreateView(generics.ListCreateAPIView):
         # Convert 'doc' field to base64 in each message
         for message in serializer.data:
             if message['doc']:
-                doc_path = os.path.join('messages_docs', str(message['doc'].split('/')[4]))  # Assuming 'media' is your media root
+                doc_path = os.path.join('media', str(message['doc'].split('/')[4]))  # Assuming 'media' is your media root
                 try:
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
@@ -87,9 +87,10 @@ class MessageRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
         # Convert 'doc' field from base64 to Django FileField
         if 'doc' in request.data:
+            doc_name = request.data.pop('doc_name', '')
             doc_base64 = request.data['doc']
             try:
-                doc_content = ContentFile(base64.b64decode(doc_base64), name='uploaded_file.txt')
+                doc_content = ContentFile(base64.b64decode(doc_base64), name=doc_name)
                 request.data['doc'] = doc_content
             except Exception as e:
                 return Response({'error': f'Error decoding base64: {str(e)}'}, status=400)

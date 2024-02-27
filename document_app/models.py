@@ -41,7 +41,7 @@ class Documents(models.Model):
                                 default='01',
                                 verbose_name='Тип')
     duration = models.DateField(verbose_name='Срок действия')
-    doc = models.FileField(upload_to='uploads_documents/', verbose_name='Документ', null=True, blank=True)
+    doc = models.FileField(upload_to='media/', verbose_name='Документ', null=True, blank=True)
 
     users = models.ManyToManyField(
         CustomUser,

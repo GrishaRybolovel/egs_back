@@ -14,7 +14,7 @@ class Messages(models.Model):
         on_delete=models.deletion.CASCADE
     )
     created = models.DateField(auto_now=True, blank=True, null=True)
-    doc = models.FileField(upload_to='messages_docs', blank=True, null=True)
+    doc = models.FileField(upload_to='media', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Сообщения'
