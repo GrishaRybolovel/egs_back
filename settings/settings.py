@@ -162,8 +162,6 @@ DB_IS_AVAIL = all([
 
 POSTGRES_READY = os.environ.get("POSTGRES_READY")
 
-print(POSTGRES_READY)
-
 if DB_IS_AVAIL and POSTGRES_READY != "0":
     DATABASES = {
         "default": {
@@ -175,8 +173,6 @@ if DB_IS_AVAIL and POSTGRES_READY != "0":
             "PORT": '',
         }
     }
-
-print(DATABASES)
 
 # AUTHENTICATION_BACKENDS = ['user_app.authentication_backends.EmailBackend']
 

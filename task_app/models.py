@@ -5,6 +5,7 @@ from project_app.models import Projects
 
 class Tasks(models.Model):
     name = models.CharField(max_length=1023, verbose_name='Задание')
+    description = models.TextField(verbose_name='Описание задачи', null=True, blank=True)
     author = models.ForeignKey(
         CustomUser,
         on_delete=models.deletion.CASCADE,
@@ -13,6 +14,7 @@ class Tasks(models.Model):
     created = models.DateField(verbose_name='Дата создания', auto_now=True)
     completion = models.DateField(verbose_name='Срок выполнения', null=True, blank=True)
     done = models.DateTimeField(verbose_name='Дата выполнения', null=True, blank=True)
+    doc = models.FileField(upload_to='media', blank=True, null=True)
     project = models.ForeignKey(
         Projects,
         on_delete=models.deletion.CASCADE,

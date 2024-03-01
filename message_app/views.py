@@ -1,4 +1,3 @@
-import base64
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from rest_framework import generics, permissions, status
@@ -7,6 +6,7 @@ from .models import Messages
 from .serializers import MessagesSerializer
 from django.http import FileResponse
 from django.views import View
+import base64
 import json
 import os
 
@@ -32,8 +32,8 @@ class MessageListCreateView(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         data = json.loads(request.body.decode('utf-8'))
 
-        doc_base64 = data.pop('doc', '')  # Assuming 'doc_base64' is the key for base64-encoded file
-        doc_name = data.pop('doc_name', '')  # You may want to pass the file name in the request
+        doc_base64 = data.pop('doc', '')
+        doc_name = data.pop('doc_name', '')
 
         try:
             if doc_base64 != '':

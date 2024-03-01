@@ -68,7 +68,7 @@ class DocumentsListCreateView(generics.ListCreateAPIView):
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
                         message['doc_name'] = message['doc'].split('/')[5]
-                        message['doc'] = None
+                        message['doc'] = doc_content
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
 
@@ -94,5 +94,15 @@ class DocumentsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         serializer.is_valid(raise_exception=True)
 
         self.perform_update(serializer)
+        updatedDocument = serializer.data
+        if updatedDocument['doc']:
+            doc_path = os.path.join(BASE_DIR, 'media/media/', self.get_object().doc.name.split('/')[-1])  # Assuming 'media' is your media root
+            try:
+                with open(doc_path, 'rb') as doc_file:
+                    doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
+                    updatedDocument['doc_name'] = updatedDocument['doc'].split('/')[5]
+                    updatedDocument['doc'] = doc_content
+            except Exception as e:
+                print(f"Error reading file {doc_path}: {e}")
 
-        return Response(serializer.data)
+        return Response(updatedDocument)
