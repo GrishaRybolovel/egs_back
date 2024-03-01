@@ -29,7 +29,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     # Basic user info
     username = None
-    email = models.CharField(max_length=20, unique=True)
+    email = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=63, verbose_name='Имя')
     surname = models.CharField(max_length=63, verbose_name='Фамилия')
     last_name = models.CharField(max_length=63, blank=True, null=True, verbose_name='Отчество')
