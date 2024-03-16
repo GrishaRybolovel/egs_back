@@ -57,7 +57,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     retraining = models.CharField(max_length=255, blank=True, null=True, verbose_name='Проф. подготовка')
     status = models.BooleanField(verbose_name='Статус', default=True)
 
-    isDark = models.BooleanField(verbose_name='Тема', default=True)
+    is_dark = models.BooleanField(verbose_name='Тема', default=True)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
