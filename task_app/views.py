@@ -9,6 +9,7 @@ from project_app.models import Projects
 from django.http import FileResponse
 from django.views import View
 from pathlib import Path
+from task_app.serializers import TasksSerializer
 import base64
 import json
 import os
@@ -114,3 +115,23 @@ class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
                 print(f"Error reading file {doc_path}: {e}")
 
         return Response(updatedTask)
+
+
+class RetrieveTasksByUser(generics.ListCreateAPIView):
+    queryset = Tasks.objects.all()
+    serializer_class = TasksSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.data.get('user_id')
+        tasks = Tasks.get_tasks_for_current_month(user_id)
+        serialized_tasks_by_day = {}
+
+        # Serialize each task in tasks_by_day
+        for date, tasks in tasks.items():
+            serialized_tasks = []
+            for task in tasks:
+                serializer = TasksSerializer(task)
+                serialized_tasks.append(serializer.data)
+            serialized_tasks_by_day[date] = serialized_tasks
+        return JsonResponse(serialized_tasks_by_day, status=status.HTTP_200_OK)
