@@ -122,7 +122,7 @@ class RetrieveTasksByUser(generics.ListCreateAPIView):
     serializer_class = TasksSerializer
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         user_id = request.data.get('user_id')
         tasks = Tasks.get_tasks_for_current_month(user_id)
         serialized_tasks_by_day = {}
