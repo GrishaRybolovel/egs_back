@@ -49,6 +49,7 @@ class Projects(models.Model):
         verbose_name='Сезонность'
     )
     cost = models.FloatField(blank=True, null=True, verbose_name='Цена обслуживания', default=0)
+    is_archived = models.BooleanField(default=False, blank=True, verbose_name='Архивный')
 
     project_to_user = models.ManyToManyField(
         CustomUser,
