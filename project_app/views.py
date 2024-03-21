@@ -59,7 +59,7 @@ class StatusChoiceChangeAPIView(APIView):
         try:
             status_changes = StatusChoiceChange.objects.filter(project_id=project_id)
             serializer = StatusChoiceChangeSerializer(status_changes, many=True)
-            return Response(serializer.data)
+            return Response(data = serializer.data, status=status.HTTP_200_OK)
         except StatusChoiceChange.DoesNotExist:
             raise NotFound(detail="Project not found")
 
@@ -82,9 +82,3 @@ class StatusChoiceChangeAPIView(APIView):
         status_change = self.get_object(pk)
         status_change.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def get_object(self, pk):
-        try:
-            return StatusChoiceChange.objects.get(pk=pk)
-        except StatusChoiceChange.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
