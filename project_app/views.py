@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from rest_framework import generics
-from .models import Projects
 from user_app.models import CustomUser
-from .serializers import ProjectsSerializer
+from .models import Projects, StatusChoiceChange
+from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
+from .serializers import ProjectsSerializer, StatusChoiceChangeSerializer
+from rest_framework.views import APIView
+from rest_framework import generics
+from django.shortcuts import render
+from rest_framework import status
 
 
 class ProjectsListView(generics.ListCreateAPIView):
@@ -49,3 +52,39 @@ class ProjectsDetailView(generics.RetrieveUpdateDestroyAPIView):
         serializer.update(instance, request.data)
 
         return Response(serializer.data)
+
+
+class StatusChoiceChangeAPIView(APIView):
+    def get(self, request, project_id):
+        try:
+            status_changes = StatusChoiceChange.objects.filter(project_id=project_id)
+            serializer = StatusChoiceChangeSerializer(status_changes, many=True)
+            return Response(serializer.data)
+        except StatusChoiceChange.DoesNotExist:
+            raise NotFound(detail="Project not found")
+
+    def post(self, request):
+        serializer = StatusChoiceChangeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        status_change = self.get_object(pk)
+        serializer = StatusChoiceChangeSerializer(status_change, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        status_change = self.get_object(pk)
+        status_change.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def get_object(self, pk):
+        try:
+            return StatusChoiceChange.objects.get(pk=pk)
+        except StatusChoiceChange.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

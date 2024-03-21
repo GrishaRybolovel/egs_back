@@ -64,3 +64,33 @@ class Projects(models.Model):
     class Meta:
         verbose_name = 'Объекты'
         verbose_name_plural = 'Объекты'
+
+class StatusChoiceChange(models.Model):
+    TYPE_CHOICES = [
+        ('1', 'Статус'),
+        ('2', 'Цена'),
+    ]
+
+    STATUS_CHOICES = [
+        ('1', 'В работе'),
+        ('2', 'ПНР'),
+        ('3', 'Сезон откл.'),
+        ('4', 'СМР'),
+        ('5', 'Аварийное откл.')
+    ]
+
+    project = models.ForeignKey(
+        Projects,
+        on_delete=models.deletion.CASCADE
+    )
+
+    type = models.CharField(
+        max_length=1,
+        choices=TYPE_CHOICES,
+        default='2',
+        verbose_name='Тип'
+    )
+    value = models.FloatField(null=True, blank=True, verbose_name='Значение')
+    status = models.CharField(max_length=255, null=True, blank=True, choices=STATUS_CHOICES)
+
+    date = models.DateField(null=True, blank=True, auto_now=True)

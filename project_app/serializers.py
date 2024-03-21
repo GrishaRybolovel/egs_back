@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Projects
+from .models import Projects, StatusChoiceChange
 from user_app.serializers import CustomUserSerializer
 
 
@@ -8,4 +8,10 @@ class ProjectsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Projects
+        fields = '__all__'
+
+class StatusChoiceChangeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = StatusChoiceChange
         fields = '__all__'
