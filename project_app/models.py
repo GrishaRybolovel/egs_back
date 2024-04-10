@@ -93,4 +93,4 @@ class StatusChoiceChange(models.Model):
     value = models.FloatField(null=True, blank=True, verbose_name='Значение')
     status = models.CharField(max_length=255, null=True, blank=True, choices=STATUS_CHOICES)
 
-    date = models.DateField(null=True, blank=True, auto_now=True)
+    date = models.DateField(null=True, blank=True)

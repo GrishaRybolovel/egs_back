@@ -41,7 +41,6 @@ class LoginApi(ObtainAuthToken):
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = CustomUserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
 
     def get_object(self):
         return self.request.user
@@ -50,7 +49,6 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 class ListUsersView(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
 class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
