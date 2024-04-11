@@ -29,8 +29,8 @@ class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TasksSerializer
     permission_classes = [permissions.AllowAny]
 
-    def perform_create(self, request, *args, **kwargs):
-        data = request.data
+    def create(self, request, *args, **kwargs):
+        data = json.loads(request.body.decode('utf-8'))
 
         doc_base64 = data.pop('doc', '')
         doc_name = data.pop('doc_name', '')
