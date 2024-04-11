@@ -1,8 +1,12 @@
+import json
+
 from rest_framework import generics, permissions, exceptions, response, views, viewsets
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 from .models import CustomUser
+from rest_framework.views import APIView
 from .serializers import CustomUserSerializer
 
 
@@ -26,7 +30,7 @@ class LoginApi(ObtainAuthToken):
         email = request.data["email"]
         password = request.data["password"]
 
-        user = CustomUser.objects.filter(email=email).first()
+        user = CustomUser.objects.get(email=email)
 
         if user is None:
             raise exceptions.AuthenticationFailed("Invalid Credentials")
@@ -39,10 +43,12 @@ class LoginApi(ObtainAuthToken):
         return Response({'token': token.key})
 
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
+class UserProfileView(generics.RetrieveAPIView):
     serializer_class = CustomUserSerializer
+    permission_classes = (permissions.AllowAny,)
 
     def get_object(self):
+        print(self.request.user)
         return self.request.user
 
 

@@ -10,6 +10,7 @@ from django.http import FileResponse
 from django.views import View
 from pathlib import Path
 from task_app.serializers import TasksSerializer
+from urllib.parse import unquote
 import base64
 import json
 import os
@@ -67,8 +68,9 @@ class TaskListCreateView(generics.ListCreateAPIView):
         # Convert 'doc' field to base64 in each message
         for task in serializer.data:
             if task['doc']:
+                print(unquote(task['doc'].split('/')[5]))
                 doc_path = os.path.join(BASE_DIR, 'media/media/',
-                                        str(task['doc'].split('/')[5]))  # Assuming 'media' is your media root
+                                        str(unquote(task['doc'].split('/')[5])))  # Assuming 'media' is your media root
                 try:
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')

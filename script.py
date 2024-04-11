@@ -18,8 +18,9 @@ with open("egservice_bd.json", "r") as f:
                         "completion": task["date"][0:10],
                         "done": task["closedDate"],
                         "project": task["objectId"],
+                        "task_to_user": []
                     }
 
                     print(json.dumps(new_dict))
-                    res = requests.post('https://egs-back.ru/task/tasks/', data=new_dict)
+                    res = requests.post('https://egs-back.ru/task/tasks/', data=json.dumps(new_dict))
                     print(res.status_code)
