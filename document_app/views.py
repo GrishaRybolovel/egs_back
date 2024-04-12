@@ -71,7 +71,7 @@ class DocumentsListCreateView(generics.ListCreateAPIView):
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
                         message['doc_name'] = message['doc'].split('/')[5]
-                        message['doc'] = doc_content
+                        message['doc'] = None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
 

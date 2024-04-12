@@ -76,7 +76,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
                         task['doc_name'] = task['doc'].split('/')[5]
                         print(task['doc_name'])
-                        task['doc'] = doc_content
+                        task['doc'] = None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
 
