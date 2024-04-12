@@ -61,3 +61,11 @@ class Tasks(models.Model):
                 current_date += datetime.timedelta(days=1)
 
         return tasks_by_day
+
+    @property
+    def type(self):
+        if self.project:
+            return self.project.proj_type if hasattr(self.project, 'proj_type') else None
+        else:
+            return None
+
