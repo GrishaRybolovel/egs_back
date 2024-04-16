@@ -3,7 +3,7 @@ from .models import CustomUser
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
+    id = serializers.IntegerField()
     email = serializers.CharField()
     name = serializers.CharField()
     surname = serializers.CharField()
@@ -25,8 +25,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return instance
 
     def create(self, validated_data):
+        id = validated_data.pop('id', None)
         password = validated_data.pop('password')
-        user = super().create(validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+
+        if id is not None:
+            # Check if an object with the provided ID already exists
+            instance, created = CustomUser.objects.update_or_create(id=id, defaults=validated_data)
+        else:
+            # If ID is not provided, create a new object using the default create method
+            instance = CustomUser.objects.create(**validated_data)
+
+        instance.set_password(password)
+        instance.save()
+        return instance
