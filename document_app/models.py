@@ -34,7 +34,7 @@ class Documents(models.Model):
     name = models.CharField(max_length=255, verbose_name='Наименование документа')
     status = models.CharField(max_length=4,
                               choices=ROLE_IN_SYSTEM_CHOICES,
-                              default='CU',
+                              default='1',
                               verbose_name='Статус')
     doc_type = models.CharField(max_length=100,
                                 choices=TYPE_CHOICES,

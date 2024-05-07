@@ -35,10 +35,10 @@ with open("egservice_bd.json", "r") as f:
                         }
 
                         print(json.dumps(user_model_fields))
-                        res = requests.post('http://127.0.0.1:8000/user/user-create/', data=user_model_fields)
+                        res = requests.post('https://egs-back.ru/user/user-create/', data=user_model_fields)
                         print(res.status_code)
 
-# for i in range(100):
-#     if i != 66:
-#         res = requests.delete(f'http://127.0.0.1:8000/user/users/{i}')
-#         print(res.status_code)
+for i in range(100):
+    if i != 66:
+        res = requests.delete(f'https://egs-back.ru/user/users/{i}')
+        print(res.status_code)

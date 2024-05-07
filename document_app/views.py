@@ -51,8 +51,10 @@ class DocumentsListCreateView(generics.ListCreateAPIView):
 
             # Return the response similar to super().create
             headers = self.get_success_headers(serializer.data)
+            response = JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+            response['Content-Type'] = 'application/json; charset=utf-8'
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            return response
 
         except Exception as e:
             print(e)
