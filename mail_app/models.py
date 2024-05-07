@@ -1,6 +1,5 @@
 from django.db import models
 from user_app.models import CustomUser
-from message_app.models import Messages
 from project_app.models import Projects
 
 
@@ -48,13 +47,13 @@ class Mails(models.Model):
         blank=True,
         verbose_name="Пользователи"
     )
-
-    mail_to_message = models.ManyToManyField(
-        Messages,
-        related_name="mail_to_message",
-        blank=True,
-        verbose_name="Сообщения"
-    )
+    #
+    # mail_to_message = models.ManyToManyField(
+    #     Messages,
+    #     related_name="mail_to_message",
+    #     blank=True,
+    #     verbose_name="Сообщения"
+    # )
 
     def __str__(self):
         return self.name
