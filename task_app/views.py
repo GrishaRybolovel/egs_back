@@ -72,11 +72,14 @@ class TaskListCreateView(generics.ListCreateAPIView):
                 doc_path = os.path.join(BASE_DIR, 'media/media/',
                                         str(unquote(task['doc'].split('/')[5])))  # Assuming 'media' is your media root
                 try:
-                    with open(doc_path, 'rb') as doc_file:
-                        doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
-                        task['doc_name'] = task['doc'].split('/')[5]
-                        print(task['doc_name'])
-                        task['doc'] = None
+                    task['doc_name'] = task['doc'].split('/')[5]
+                    # print(task['doc_name'])
+                    task['doc'] = None
+                    # with open(doc_path, 'rb') as doc_file:
+                    #     doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
+                    #     task['doc_name'] = task['doc'].split('/')[5]
+                    #     print(task['doc_name'])
+                    #     task['doc'] = None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
 
