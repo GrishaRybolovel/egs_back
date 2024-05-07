@@ -71,10 +71,12 @@ class MessageListCreateView(generics.ListCreateAPIView):
             if message['doc']:
                 doc_path = os.path.join(BASE_DIR, 'media/media/', str(unquote(message['doc'].split('/')[5])))  # Assuming 'media' is your media root
                 try:
-                    with open(doc_path, 'rb') as doc_file:
-                        doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
-                        message['doc_name'] = message['doc'].split('/')[5]
-                        message['doc'] = None
+                    message['doc_name'] = message['doc'].split('/')[5]
+                    message['doc'] = None
+                    # with open(doc_path, 'rb') as doc_file:
+                    #     doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
+                    #     message['doc_name'] = message['doc'].split('/')[5]
+                    #     message['doc'] = None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
 

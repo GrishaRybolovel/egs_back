@@ -1,6 +1,7 @@
 from django.db import models
 from user_app.models import CustomUser
 from task_app.models import Tasks
+from mail_app.models import Mails
 
 
 class Messages(models.Model):
@@ -11,7 +12,15 @@ class Messages(models.Model):
     )
     task = models.ForeignKey(
         Tasks,
-        on_delete=models.deletion.CASCADE
+        on_delete=models.deletion.CASCADE,
+        null=True,
+        blank=True
+    )
+    mail = models.ForeignKey(
+        Mails,
+        on_delete=models.deletion.CASCADE,
+        null=True,
+        blank=True
     )
     created = models.DateField(auto_now=True, blank=True, null=True)
     doc = models.FileField(upload_to='media', blank=True, null=True)
