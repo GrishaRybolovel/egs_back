@@ -147,6 +147,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         # Add other authentication classes as needed
     ],
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPageNumberPagination',
+    'PAGE_SIZE': 10,  # Set the number of items per page
 }
 
 DB_USERNAME = os.environ.get("POSTGRES_USER")

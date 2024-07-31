@@ -61,3 +61,4 @@ class Mails(models.Model):
     class Meta:
         verbose_name = 'Письма'
         verbose_name_plural = 'Письма'
+        ordering = ['-created']

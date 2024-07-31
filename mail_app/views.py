@@ -5,6 +5,7 @@ from django.core.files.base import ContentFile
 from rest_framework import generics, status
 from rest_framework.response import Response
 
+from core.pagination import CustomPageNumberPagination
 from .models import Mails
 from .serializers import MailsSerializer
 from django.http import FileResponse, JsonResponse
@@ -61,20 +62,27 @@ class MailsListCreateView(generics.ListCreateAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            processed_data = self.process_mails(serializer.data)
+            return self.get_paginated_response(processed_data)
+
         serializer = self.get_serializer(queryset, many=True)
+        processed_data = self.process_mails(serializer.data)
+        return JsonResponse(processed_data, safe=False)
 
-        # Convert 'doc' field to base64 in each message
-
-        for message in serializer.data:
+    def process_mails(self, data):
+        for message in data:
             if message['doc']:
-                doc_path = os.path.join(BASE_DIR, 'media/media/', str(unquote(message['doc'].split('/')[5])))  # Assuming 'media' is your media root
+                doc_path = os.path.join(BASE_DIR, 'media/media/', str(unquote(
+                    message['doc'].split('/')[5])))  # Assuming 'media' is your media root
                 try:
                     message['doc_name'] = message['doc'].split('/')[5]
                     message['doc'] = None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
-
-        return JsonResponse(serializer.data, safe=False)
+        return data
 
 
 class MailsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

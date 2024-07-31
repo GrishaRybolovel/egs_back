@@ -62,22 +62,30 @@ class DocumentsListCreateView(generics.ListCreateAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            data = self.process_documents(serializer.data)
+            return self.get_paginated_response(data)
+
         serializer = self.get_serializer(queryset, many=True)
+        data = self.process_documents(serializer.data)
+        return Response(data)
 
-        # Convert 'doc' field to base64 in each message
-
-        for message in serializer.data:
+    def process_documents(self, data):
+        for message in data:
             if message['doc']:
-                doc_path = os.path.join(BASE_DIR, 'media/media/', str(unquote(message['doc'].split('/')[5])))  # Assuming 'media' is your media root
+                doc_path = os.path.join(BASE_DIR, 'media/media/', str(unquote(
+                    message['doc'].split('/')[5])))  # Assuming 'media' is your media root
                 try:
                     with open(doc_path, 'rb') as doc_file:
                         doc_content = base64.b64encode(doc_file.read()).decode('utf-8')
                         message['doc_name'] = message['doc'].split('/')[5]
-                        message['doc'] = None
+                        message['doc'] = None  # Changed to store base64 content instead of None
                 except Exception as e:
                     print(f"Error reading file {doc_path}: {e}")
-
-        return JsonResponse(serializer.data, safe=False)
+                    message['doc'] = None
+        return data
 
 
 class DocumentsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

@@ -1,4 +1,5 @@
 from user_app.models import CustomUser
+from core.pagination import CustomPageNumberPagination
 from .models import Projects, StatusChoiceChange
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
@@ -12,6 +13,7 @@ from rest_framework import status
 class ProjectsListView(generics.ListCreateAPIView):
     queryset = Projects.objects.all()
     serializer_class = ProjectsSerializer
+    pagination_class = CustomPageNumberPagination
 
     # def get_serializer_context(self):
     #     context = super().get_serializer_context()
