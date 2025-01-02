@@ -20,9 +20,8 @@ jobs:
 
     - name: SSH into VPS and pull code
       run: |
-        ssh -o StrictHostKeyChecking=no root@185.20.227.12 'cd /home/django/egs_back && git fetch origin main && git reset --hard origin/main'
+        ssh -o StrictHostKeyChecking=no root@151.248.120.11 'cd /home/django/egs_back && git fetch origin main && git reset --hard origin/main'
 
     - name: Run deploy script
       run: |
-        ssh -o StrictHostKeyChecking=no root@185.20.227.12 'cd /home/django/egs_back && chmod +x deploy.sh && sh deploy.sh'
-#        blabla
+        ssh -o StrictHostKeyChecking=no root@151.248.120.11 'cd /home/django/egs_back && chmod +x deploy.sh && sh deploy.sh'
