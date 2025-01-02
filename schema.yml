@@ -1,0 +1,2222 @@
+openapi: 3.0.3
+info:
+  title: EGS API
+  version: 0.0.0
+paths:
+  /document/documents/:
+    get:
+      operationId: document_documents_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - document
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentsList'
+          description: ''
+    post:
+      operationId: document_documents_create
+      tags:
+      - document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Documents'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Documents'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Documents'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+          description: ''
+  /document/documents/{id}/:
+    get:
+      operationId: document_documents_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - document
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+          description: ''
+    put:
+      operationId: document_documents_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Documents'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Documents'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Documents'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+          description: ''
+    patch:
+      operationId: document_documents_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDocuments'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDocuments'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDocuments'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+          description: ''
+    delete:
+      operationId: document_documents_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - document
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /mail/mails/:
+    get:
+      operationId: mail_mails_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - mail
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailsList'
+          description: ''
+    post:
+      operationId: mail_mails_create
+      tags:
+      - mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mails'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mails'
+          description: ''
+  /mail/mails/{id}/:
+    get:
+      operationId: mail_mails_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - mail
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mails'
+          description: ''
+    put:
+      operationId: mail_mails_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mails'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mails'
+          description: ''
+    patch:
+      operationId: mail_mails_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMails'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mails'
+          description: ''
+    delete:
+      operationId: mail_mails_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - mail
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /message/messages/:
+    get:
+      operationId: message_messages_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - message
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMessagesList'
+          description: ''
+    post:
+      operationId: message_messages_create
+      tags:
+      - message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Messages'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Messages'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Messages'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+          description: ''
+  /message/messages/{id}/:
+    get:
+      operationId: message_messages_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - message
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+          description: ''
+    put:
+      operationId: message_messages_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Messages'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Messages'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Messages'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+          description: ''
+    patch:
+      operationId: message_messages_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMessages'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMessages'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMessages'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+          description: ''
+    delete:
+      operationId: message_messages_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - message
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /project/projects/:
+    get:
+      operationId: project_projects_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectsList'
+          description: ''
+    post:
+      operationId: project_projects_create
+      tags:
+      - project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Projects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Projects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Projects'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+          description: ''
+  /project/projects/{id}/:
+    get:
+      operationId: project_projects_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+          description: ''
+    put:
+      operationId: project_projects_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Projects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Projects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Projects'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+          description: ''
+    patch:
+      operationId: project_projects_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjects'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+          description: ''
+    delete:
+      operationId: project_projects_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /project/status-choice-change/:
+    get:
+      operationId: project_status_choice_change_retrieve
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: project_status_choice_change_create
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: project_status_choice_change_update
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: project_status_choice_change_destroy
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /project/status-choice-change/{project_id}/:
+    get:
+      operationId: project_status_choice_change_retrieve_2
+      parameters:
+      - in: path
+        name: project_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: project_status_choice_change_create_2
+      parameters:
+      - in: path
+        name: project_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: project_status_choice_change_update_2
+      parameters:
+      - in: path
+        name: project_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: project_status_choice_change_destroy_2
+      parameters:
+      - in: path
+        name: project_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - project
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /task/tasks/:
+    get:
+      operationId: task_tasks_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - task
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTasksList'
+          description: ''
+    post:
+      operationId: task_tasks_create
+      tags:
+      - task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+          description: ''
+  /task/tasks/{id}/:
+    get:
+      operationId: task_tasks_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - task
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+          description: ''
+    put:
+      operationId: task_tasks_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+          description: ''
+    patch:
+      operationId: task_tasks_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTasks'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTasks'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTasks'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+          description: ''
+    delete:
+      operationId: task_tasks_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - task
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /task/tasks_by_date/:
+    get:
+      operationId: task_tasks_by_date_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - task
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTasksList'
+          description: ''
+    post:
+      operationId: task_tasks_by_date_create
+      tags:
+      - task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+          description: ''
+  /user/login/:
+    post:
+      operationId: user_login_create
+      tags:
+      - user
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+  /user/profile/:
+    get:
+      operationId: user_profile_retrieve
+      tags:
+      - user
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+  /user/register/:
+    post:
+      operationId: user_register_create
+      tags:
+      - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+  /user/user-create/:
+    get:
+      operationId: user_user_create_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - user
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCustomUserList'
+          description: ''
+    post:
+      operationId: user_user_create_create
+      tags:
+      - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+  /user/users/:
+    get:
+      operationId: user_users_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - user
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCustomUserList'
+          description: ''
+  /user/users/{id}/:
+    get:
+      operationId: user_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - user
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    put:
+      operationId: user_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    patch:
+      operationId: user_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    delete:
+      operationId: user_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - user
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - password
+      - token
+      - username
+    CustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        last_name:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+        is_active:
+          type: boolean
+        is_superuser:
+          type: boolean
+        is_staff:
+          type: boolean
+        date_joined:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+          title: Телефон
+          maxLength: 255
+        address:
+          type: string
+          nullable: true
+          title: Адрес
+          maxLength: 255
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          title: Дата рождения
+        date_of_start:
+          type: string
+          format: date
+          nullable: true
+          title: Дата начала
+        inn:
+          type: string
+          nullable: true
+          title: ИНН
+          maxLength: 256
+        snils:
+          type: string
+          nullable: true
+          title: СНИЛС
+          maxLength: 256
+        passport:
+          type: string
+          nullable: true
+          title: Паспорт
+          maxLength: 256
+        post:
+          type: string
+          nullable: true
+          title: Должность
+          maxLength: 255
+        info_about_relocate:
+          type: string
+          nullable: true
+          title: Информация о переводе
+          maxLength: 511
+        attestation:
+          type: string
+          nullable: true
+          title: Аттестация
+          maxLength: 255
+        qualification:
+          type: string
+          nullable: true
+          title: Повышение квалификации
+          maxLength: 255
+        retraining:
+          type: string
+          nullable: true
+          title: Проф. подготовка
+          maxLength: 255
+        status:
+          type: boolean
+          title: Статус
+        is_dark:
+          type: boolean
+          title: Тема
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+      required:
+      - email
+      - id
+      - last_name
+      - name
+      - password
+      - surname
+    DocTypeEnum:
+      enum:
+      - '01'
+      - '02'
+      - '03'
+      - '04'
+      - '05'
+      - '06'
+      - '07'
+      - 08
+      - 09
+      - '10'
+      - '11'
+      - '12'
+      - '13'
+      type: string
+      description: |-
+        * `01` - Договор
+        * `02` - Регистрация объекта в государственном реестре
+        * `03` - Правоустанавливающие документы
+        * `04` - Проектные документы
+        * `05` - Экспертиза
+        * `06` - Страхование
+        * `07` - Разрешительные документы и акты ввода в эксплуатацию
+        * `08` - Исполнительно-техническая документация по строительству
+        * `09` - Эксплуатационные документы
+        * `10` - Обучение персонала
+        * `11` - Документы сезонные в эксплуатационный период
+        * `12` - Нормативно-правовые акты
+        * `13` - Иные документы
+    Documents:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Наименование документа
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DocumentsStatusEnum'
+          title: Статус
+        doc_type:
+          allOf:
+          - $ref: '#/components/schemas/DocTypeEnum'
+          title: Тип
+        duration:
+          type: string
+          format: date
+          title: Срок действия
+        doc:
+          type: string
+          format: uri
+          nullable: true
+          title: Документ
+        users:
+          type: array
+          items:
+            type: integer
+        projects:
+          type: array
+          items:
+            type: integer
+      required:
+      - duration
+      - id
+      - name
+    DocumentsStatusEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      type: string
+      description: |-
+        * `1` - Без статуса
+        * `2` - Черновик
+        * `3` - На согласовании
+        * `4` - Действующий
+        * `5` - Завершённый
+        * `6` - Расторгнутый
+        * `7` - Аннулированный
+    FuncEnum:
+      enum:
+      - '1'
+      - '2'
+      type: string
+      description: |-
+        * `1` - Письмо как задача
+        * `2` - Информационное письмо
+    Mails:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Описание
+          maxLength: 1023
+        description:
+          type: string
+          nullable: true
+          title: Описание письма
+        number_in:
+          type: string
+          nullable: true
+          title: Входящий номер
+          maxLength: 127
+        number_out:
+          type: string
+          nullable: true
+          title: Исходящий номер
+          maxLength: 127
+        completion_in:
+          type: string
+          format: date
+          nullable: true
+          title: Входящая дата выполнения
+        completion_out:
+          type: string
+          format: date
+          nullable: true
+          title: Исходящая дата выполнения
+        naming:
+          type: string
+          nullable: true
+          title: Наименование отправителя/получателя
+          maxLength: 1023
+        func:
+          allOf:
+          - $ref: '#/components/schemas/FuncEnum'
+          title: Тип письма
+        created:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата создания
+        date_reg:
+          type: string
+          format: date
+          nullable: true
+          title: Дата регистрации
+        number:
+          type: string
+          nullable: true
+          title: Номер
+          maxLength: 1023
+        completion:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+        done:
+          type: string
+          format: date
+          nullable: true
+          title: Дата выполнения
+        type:
+          type: string
+          nullable: true
+          title: Тип
+          maxLength: 256
+        doc:
+          type: string
+          format: uri
+          nullable: true
+          title: Документ
+        author:
+          type: integer
+          title: Автор
+        projects_to_mails:
+          type: integer
+          nullable: true
+          title: Объект
+        mail_to_user:
+          type: array
+          items:
+            type: integer
+            title: Пользователи
+          title: Пользователи
+      required:
+      - author
+      - created
+      - id
+      - name
+    Messages:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        message:
+          type: string
+          nullable: true
+          title: Сообщение
+          maxLength: 1024
+        created:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+        doc:
+          type: string
+          format: uri
+          nullable: true
+        author:
+          type: integer
+        task:
+          type: integer
+          nullable: true
+        mail:
+          type: integer
+          nullable: true
+      required:
+      - author
+      - created
+      - id
+    PaginatedCustomUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomUser'
+    PaginatedDocumentsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Documents'
+    PaginatedMailsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mails'
+    PaginatedMessagesList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Messages'
+    PaginatedProjectsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Projects'
+    PaginatedTasksList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tasks'
+    PatchedCustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        last_name:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+        is_active:
+          type: boolean
+        is_superuser:
+          type: boolean
+        is_staff:
+          type: boolean
+        date_joined:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+          title: Телефон
+          maxLength: 255
+        address:
+          type: string
+          nullable: true
+          title: Адрес
+          maxLength: 255
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          title: Дата рождения
+        date_of_start:
+          type: string
+          format: date
+          nullable: true
+          title: Дата начала
+        inn:
+          type: string
+          nullable: true
+          title: ИНН
+          maxLength: 256
+        snils:
+          type: string
+          nullable: true
+          title: СНИЛС
+          maxLength: 256
+        passport:
+          type: string
+          nullable: true
+          title: Паспорт
+          maxLength: 256
+        post:
+          type: string
+          nullable: true
+          title: Должность
+          maxLength: 255
+        info_about_relocate:
+          type: string
+          nullable: true
+          title: Информация о переводе
+          maxLength: 511
+        attestation:
+          type: string
+          nullable: true
+          title: Аттестация
+          maxLength: 255
+        qualification:
+          type: string
+          nullable: true
+          title: Повышение квалификации
+          maxLength: 255
+        retraining:
+          type: string
+          nullable: true
+          title: Проф. подготовка
+          maxLength: 255
+        status:
+          type: boolean
+          title: Статус
+        is_dark:
+          type: boolean
+          title: Тема
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+    PatchedDocuments:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Наименование документа
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DocumentsStatusEnum'
+          title: Статус
+        doc_type:
+          allOf:
+          - $ref: '#/components/schemas/DocTypeEnum'
+          title: Тип
+        duration:
+          type: string
+          format: date
+          title: Срок действия
+        doc:
+          type: string
+          format: uri
+          nullable: true
+          title: Документ
+        users:
+          type: array
+          items:
+            type: integer
+        projects:
+          type: array
+          items:
+            type: integer
+    PatchedMails:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Описание
+          maxLength: 1023
+        description:
+          type: string
+          nullable: true
+          title: Описание письма
+        number_in:
+          type: string
+          nullable: true
+          title: Входящий номер
+          maxLength: 127
+        number_out:
+          type: string
+          nullable: true
+          title: Исходящий номер
+          maxLength: 127
+        completion_in:
+          type: string
+          format: date
+          nullable: true
+          title: Входящая дата выполнения
+        completion_out:
+          type: string
+          format: date
+          nullable: true
+          title: Исходящая дата выполнения
+        naming:
+          type: string
+          nullable: true
+          title: Наименование отправителя/получателя
+          maxLength: 1023
+        func:
+          allOf:
+          - $ref: '#/components/schemas/FuncEnum'
+          title: Тип письма
+        created:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата создания
+        date_reg:
+          type: string
+          format: date
+          nullable: true
+          title: Дата регистрации
+        number:
+          type: string
+          nullable: true
+          title: Номер
+          maxLength: 1023
+        completion:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+        done:
+          type: string
+          format: date
+          nullable: true
+          title: Дата выполнения
+        type:
+          type: string
+          nullable: true
+          title: Тип
+          maxLength: 256
+        doc:
+          type: string
+          format: uri
+          nullable: true
+          title: Документ
+        author:
+          type: integer
+          title: Автор
+        projects_to_mails:
+          type: integer
+          nullable: true
+          title: Объект
+        mail_to_user:
+          type: array
+          items:
+            type: integer
+            title: Пользователи
+          title: Пользователи
+    PatchedMessages:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        message:
+          type: string
+          nullable: true
+          title: Сообщение
+          maxLength: 1024
+        created:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+        doc:
+          type: string
+          format: uri
+          nullable: true
+        author:
+          type: integer
+        task:
+          type: integer
+          nullable: true
+        mail:
+          type: integer
+          nullable: true
+    PatchedProjects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        project_to_user:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomUser'
+          readOnly: true
+        proj_type:
+          allOf:
+          - $ref: '#/components/schemas/ProjTypeEnum'
+          title: Статус объекта
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        reg_num:
+          type: string
+          title: Регистрационный № ОПО
+          maxLength: 255
+        contract:
+          type: string
+          title: Договор
+          maxLength: 255
+        date_creation:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата договора
+        date_notification:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата(для оповещения)
+        object_type:
+          type: string
+          title: Тип объекта
+          maxLength: 255
+        address:
+          type: string
+          title: Адрес
+          maxLength: 255
+        contact:
+          type: string
+          title: Контактный человек
+          maxLength: 255
+        phone:
+          type: string
+          title: Контактный телефон
+          maxLength: 255
+        email:
+          type: string
+          title: Контактный e-mail
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ProjectsStatusEnum'
+          title: Статус объекта
+        seasoning:
+          allOf:
+          - $ref: '#/components/schemas/SeasoningEnum'
+          title: Сезонность
+        cost:
+          type: number
+          format: double
+          nullable: true
+          title: Цена обслуживания
+        is_archived:
+          type: boolean
+          title: Архивный
+    PatchedTasks:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          title: Задание
+          maxLength: 1023
+        description:
+          type: string
+          nullable: true
+          title: Описание задачи
+        created:
+          type: string
+          format: date
+          readOnly: true
+          title: Дата создания
+        completion:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+        done:
+          type: string
+          format: date-time
+          nullable: true
+          title: Дата выполнения
+        doc:
+          type: string
+          format: uri
+          nullable: true
+        author:
+          type: integer
+          title: Автор
+        project:
+          type: integer
+          nullable: true
+          title: Проект
+        task_to_user:
+          type: array
+          items:
+            type: integer
+            title: Пользователи
+          title: Пользователи
+    ProjTypeEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      type: string
+      description: |-
+        * `1` - Эксплуатация
+        * `2` - Техническое обслуживание
+        * `3` - СМР
+        * `4` - Производство
+    Projects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        project_to_user:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomUser'
+          readOnly: true
+        proj_type:
+          allOf:
+          - $ref: '#/components/schemas/ProjTypeEnum'
+          title: Статус объекта
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        reg_num:
+          type: string
+          title: Регистрационный № ОПО
+          maxLength: 255
+        contract:
+          type: string
+          title: Договор
+          maxLength: 255
+        date_creation:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата договора
+        date_notification:
+          type: string
+          format: date
+          readOnly: true
+          nullable: true
+          title: Дата(для оповещения)
+        object_type:
+          type: string
+          title: Тип объекта
+          maxLength: 255
+        address:
+          type: string
+          title: Адрес
+          maxLength: 255
+        contact:
+          type: string
+          title: Контактный человек
+          maxLength: 255
+        phone:
+          type: string
+          title: Контактный телефон
+          maxLength: 255
+        email:
+          type: string
+          title: Контактный e-mail
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ProjectsStatusEnum'
+          title: Статус объекта
+        seasoning:
+          allOf:
+          - $ref: '#/components/schemas/SeasoningEnum'
+          title: Сезонность
+        cost:
+          type: number
+          format: double
+          nullable: true
+          title: Цена обслуживания
+        is_archived:
+          type: boolean
+          title: Архивный
+      required:
+      - date_creation
+      - date_notification
+      - id
+      - name
+      - project_to_user
+      - reg_num
+    ProjectsStatusEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `1` - В работе
+        * `2` - ПНР
+        * `3` - Сезон откл.
+        * `4` - СМР
+        * `5` - Аварийное откл.
+    SeasoningEnum:
+      enum:
+      - '1'
+      - '2'
+      type: string
+      description: |-
+        * `1` - Сезонная
+        * `2` - Круглогодичная
+    Tasks:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          title: Задание
+          maxLength: 1023
+        description:
+          type: string
+          nullable: true
+          title: Описание задачи
+        created:
+          type: string
+          format: date
+          readOnly: true
+          title: Дата создания
+        completion:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+        done:
+          type: string
+          format: date-time
+          nullable: true
+          title: Дата выполнения
+        doc:
+          type: string
+          format: uri
+          nullable: true
+        author:
+          type: integer
+          title: Автор
+        project:
+          type: integer
+          nullable: true
+          title: Проект
+        task_to_user:
+          type: array
+          items:
+            type: integer
+            title: Пользователи
+          title: Пользователи
+      required:
+      - author
+      - created
+      - id
+      - name
+      - type
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

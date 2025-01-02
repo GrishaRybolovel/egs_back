@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #REST
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",
 
     #APPS
     "user_app",
@@ -148,7 +149,12 @@ REST_FRAMEWORK = {
         # Add other authentication classes as needed
     ],
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPageNumberPagination',
-    'PAGE_SIZE': 10,  # Set the number of items per page
+    'PAGE_SIZE': 10,  # Set the number of items per page,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'EGS API',
 }
 
 DB_USERNAME = os.environ.get("POSTGRES_USER")
